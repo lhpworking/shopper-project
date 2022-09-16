@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import { SHOP_PATH } from "../constants/path";
 import { fetchCategory } from "../stores/productReducer";
-import { click } from "../utils/click";
 
 /* 
     1. Lấy category render ra ở trang product list
@@ -60,13 +59,13 @@ export default function CategoryShop() {
                             <div className="form-group">
                                 <ul className="list-styled mb-0" id="productsNav">
                                     <li className="list-styled-item">
-                                        <Link onClick={ click } className="list-styled-link" to={ SHOP_PATH }>
+                                        <Link className="list-styled-link" to={ SHOP_PATH }>
                                             All Products
                                         </Link>
                                     </li>
                                     {
                                         categories.map(category => (
-                                            <li key={ category?.id } onClick={ click } className="list-styled-item active">
+                                            <li key={ category?.id } className="list-styled-item active">
                                                 <Link className="list-styled-link" to={ '/shop/category/' + category?.slug }>
                                                     { category?.title }
                                                 </Link>
