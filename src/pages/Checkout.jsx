@@ -1,5 +1,15 @@
+import { useState } from "react"
+import Input from "../components/Input"
 
 export default function Checkout() {
+    const [billingDetails, setBillingDetail] = useState({})
+    // const [error, setError] = useState({})
+
+    const onCheckout = (e) => {
+        e.preventDefault()
+        console.log(billingDetails);
+    }
+
     return (
         <div>
             {/* BREADCRUMB */ }
@@ -39,7 +49,7 @@ export default function Checkout() {
                     <div className="row">
                         <div className="col-12 col-md-7">
                             {/* Form */ }
-                            <form>
+                            <form onSubmit={ onCheckout }>
                                 {/* Heading */ }
                                 <h6 className="mb-7">Billing Details</h6>
                                 {/* Billing details */ }
@@ -47,47 +57,67 @@ export default function Checkout() {
                                     <div className="col-12 col-md-6">
                                         {/* First Name */ }
                                         <div className="form-group">
-                                            <label htmlFor="checkoutBillingFirstName">First Name *</label>
-                                            <input className="form-control form-control-sm" id="checkoutBillingFirstName" type="text" placeholder="First Name" required />
+                                            <Input
+                                                label="First Name *"
+                                                placeholder="First Name *"
+                                                onChange={ e => billingDetails.firstName = e.target.value }
+                                            // error={ error }
+                                            />
                                         </div>
                                     </div>
                                     <div className="col-12 col-md-6">
                                         {/* Last Name */ }
-                                        <div className="form-group">
-                                            <label htmlFor="checkoutBillingLastName">Last Name *</label>
-                                            <input className="form-control form-control-sm" id="checkoutBillingLastName" type="text" placeholder="Last Name" required />
-                                        </div>
+                                        <Input
+                                            label="Last Name *"
+                                            placeholder="Last Name *"
+                                            onChange={ e => billingDetails.lastName = e.target.value }
+                                        // error={ error }
+                                        />
                                     </div>
                                     <div className="col-12">
                                         {/* Email */ }
-                                        <div className="form-group">
-                                            <label htmlFor="checkoutBillingEmail">Email *</label>
-                                            <input className="form-control form-control-sm" id="checkoutBillingEmail" type="email" placeholder="Email" required />
-                                        </div>
+                                        <Input
+                                            label="Email *"
+                                            placeholder="Email *"
+                                            onChange={ e => billingDetails.email = e.target.value }
+                                        // error={ error }
+                                        />
                                     </div>
                                     <div className="col-12">
                                         {/* Company Name */ }
-                                        <div className="form-group">
-                                            <label htmlFor="checkoutBillingCompany">Company name *</label>
-                                            <input className="form-control form-control-sm" id="checkoutBillingCompany" type="text" placeholder="Company name (optional)" />
-                                        </div>
+                                        <Input
+                                            label="Company Name *"
+                                            placeholder="Company Name(optional) "
+                                            onChange={ e => billingDetails.companyName = e.target.value }
+                                        // error={ error }
+                                        />
                                     </div>
                                     <div className="col-12">
                                         {/* Country */ }
-                                        <div className="form-group">
-                                            <label htmlFor="checkoutBillingCountry">Country *</label>
-                                            <input className="form-control form-control-sm" id="checkoutBillingCountry" type="text" placeholder="Country" required />
-                                        </div>
+                                        <Input
+                                            label="Country *"
+                                            placeholder="Country"
+                                            onChange={ e => billingDetails.country = e.target.value }
+                                        // error={ error }
+                                        />
                                     </div>
                                     <div className="col-12">
                                         {/* Address Line 1 */ }
-                                        <div className="form-group">
-                                            <label htmlFor="checkoutBillingAddress">Address Line 1 *</label>
-                                            <input className="form-control form-control-sm" id="checkoutBillingAddress" type="text" placeholder="Address Line 1" required />
-                                        </div>
+                                        <Input
+                                            label="Address line 1 *"
+                                            placeholder="Address line 1 *"
+                                            onChange={ e => billingDetails.addressLine1 = e.target.value }
+                                        // error={ error }
+                                        />
                                     </div>
                                     <div className="col-12">
                                         {/* Address Line 2 */ }
+                                        <Input
+                                            label="Address line 1 *"
+                                            placeholder="Address line 1 *"
+                                            onChange={ e => billingDetails.addressLine1 = e.target.value }
+                                        // error={ error }
+                                        />
                                         <div className="form-group">
                                             <label htmlFor="checkoutBillingAddressTwo">Address Line 2</label>
                                             <input className="form-control form-control-sm" id="checkoutBillingAddressTwo" type="text" placeholder="Address Line 2 (optional)" />

@@ -10,7 +10,6 @@ export default function Auth() {
                     <LogInModal />
                     {/* register modal */ }
                     <RegisterModal />
-
                 </div>
             </div>
         </section>

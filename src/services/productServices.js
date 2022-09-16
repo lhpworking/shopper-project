@@ -1,8 +1,8 @@
 import { api } from "../constants/api"
 
 export const productServices = {
-    getProducts() {
-        return api.get("/product")
+    getProducts(query = '') {
+        return api.get(`/product${query}`)
     },
     getProductDetail(slug) {
         return api.get(`/product?slug=${slug}`)

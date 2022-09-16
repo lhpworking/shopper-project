@@ -1,5 +1,19 @@
+import { message } from "antd";
+import { useMemo } from "react";
+import { generatePath, Link } from "react-router-dom";
+import { PRODUCT_DETAIL_PATH } from "../constants/path";
+import accountServices from "../services/accountService";
+import { currency } from "../utils/currency";
 
-export default function ProductCard({ price, price_usd, name, brand_name, thumbnail_url }) {
+
+export default function ProductCard({ real_price, price, name, brand_name, images, slug, thumbnail_url, _id }) {
+    const productDetailPath = useMemo(() =>
+        generatePath(PRODUCT_DETAIL_PATH, { slug }), [slug])
+    const addWishList = async () => {
+        await accountServices.addWishList(_id)
+        message.success('Product has been added to your WishList', 1);
+
+    }
     return (
         <div className="col-6 col-md-4">
             {/* Card */ }
@@ -11,10 +25,11 @@ export default function ProductCard({ price, price_usd, name, brand_name, thumbn
                 {/* Image */ }
                 <div className="card-img">
                     {/* Image */ }
-                    <a className="card-img-hover" href="product.html">
-                        <img className="card-img-top card-img-back" src={ thumbnail_url } alt="..." />
-                        <img className="card-img-top card-img-front" src={ thumbnail_url } alt="..." />
-                    </a>
+                    <Link className="card-img-hover" to={ productDetailPath }>
+                        <img className="card-img-top card-img-back" src={ images?.[1]?.thumbnail_url || images?.[0]?.thumbnail_url === "https://salt.tikicdn.com/assets/img/image.svg" ? "https://source.unsplash.com/random/?iphone" : images?.[1]?.thumbnail_url } alt="..." />
+                        <img className="card-img-top card-img-front" src={
+                            images?.[0]?.thumbnail_url === "https://salt.tikicdn.com/assets/img/image.svg" ? "https://source.unsplash.com/random/?samsung" : images?.[0]?.thumbnail_url } alt="" />
+                    </Link>
                     {/* Actions */ }
                     <div className="card-actions">
                         <span className="card-action">
@@ -28,7 +43,7 @@ export default function ProductCard({ price, price_usd, name, brand_name, thumbn
                             </button>
                         </span>
                         <span className="card-action">
-                            <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button">
+                            <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button" onClick={ addWishList }>
                                 <i className="fe fe-heart" />
                             </button>
                         </span>
@@ -38,19 +53,19 @@ export default function ProductCard({ price, price_usd, name, brand_name, thumbn
                 <div className="card-body px-0">
                     {/* Category */ }
                     <div className="font-size-xs">
-                        <a className="text-muted" href="shop.html">{ brand_name }</a>
+                        <Link className="text-muted" to={ productDetailPath }>{ brand_name && brand_name }</Link>
                     </div>
                     {/* Title */ }
                     <div className="font-weight-bold">
-                        <a className="text-body" href="product.html">
+                        <Link className="text-body" to={ productDetailPath }>
                             { name }
-                        </a>
+                        </Link>
                     </div>
                     {/* Price */ }
                     <div className="font-weight-bold">
-                        <span className="font-size-xs text-gray-350 text-decoration-line-through">{ price } vnd</span>
+                        <span className="font-size-xs text-gray-350 text-decoration-line-through">{ currency(price) } </span>
                         <br />
-                        <span className="text-primary">${ price_usd }</span>
+                        <span className="text-primary">{ currency(real_price) }</span>
                     </div>
                 </div>
             </div>

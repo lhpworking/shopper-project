@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
-import { ACCOUNT_ORDERS_PATH, ACCOUNT_WISHLIST_PATH, BLOG_PATH, BLOG_POST_PATH, CONTACT_PATH, FAQ_PATH, HOME_PATH, SHOPPING_AND_RETURNS_PATH } from "../constants/path";
+import { ACCOUNT_ORDERS_PATH, ACCOUNT_WISHLIST_PATH, BLOG_PATH, BLOG_POST_PATH, CONTACT_PATH, FAQ_PATH, HOME_PATH, SHOPPING_AND_RETURNS_PATH, SHOP_PATH } from "../constants/path";
+import { useGlobalState } from "../hooks/useGlobalSate";
 
 export default function Header() {
+    const { isOpen, setIsOpen } = useGlobalState()
+    const onOpenModal = (e) => {
+        e.preventDefault()
+        setIsOpen(true)
+    }
     return (
         <div>
             {/* NAVBAR */ }
@@ -112,9 +118,9 @@ export default function Header() {
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item dropdown">
                                 {/* Toggle */ }
-                                <a className="nav-link" data-toggle="dropdown" href="#">Home</a>
+                                <Link className="nav-link" to={ HOME_PATH }>Home</Link>
                                 {/* Menu */ }
-                                <div className="dropdown-menu">
+                                {/* <div className="dropdown-menu">
                                     <div className="card card-lg">
                                         <div className="card-body">
                                             <ul className="list-styled font-size-sm">
@@ -145,11 +151,11 @@ export default function Header() {
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </li>
                             <li className="nav-item dropdown position-static">
                                 {/* Toggle */ }
-                                <a className="nav-link" data-toggle="dropdown" href="#">Catalog</a>
+                                <Link className="nav-link" to={ SHOP_PATH }>Catalog</Link>
                                 {/* Menu */ }
                                 <div className="dropdown-menu w-100">
                                     {/* Tabs */ }
@@ -329,17 +335,17 @@ export default function Header() {
                             </li>
                             <li className="nav-item dropdown">
                                 {/* Toggle */ }
-                                <a className="nav-link" data-toggle="dropdown" href="#">Shop</a>
+                                <Link className="nav-link" to={ SHOP_PATH }>Shop</Link>
                                 {/* Menu */ }
-                                <div className="dropdown-menu" style={ { minWidth: '650px' } }>
-                                    <div className="card card-lg">
-                                        <div className="card-body">
-                                            <div className="row">
-                                                <div className="col">
-                                                    {/* Heading */ }
-                                                    <div className="mb-5 font-weight-bold">Shop</div>
-                                                    {/* Links */ }
-                                                    <ul className="list-styled mb-7 font-size-sm">
+                                {/* <div className="dropdown-menu" style={ { minWidth: '650px' } }> */ }
+                                {/* <div className="card card-lg"> */ }
+                                {/* <div className="card-body"> */ }
+                                {/* <div className="row"> */ }
+                                {/* <div className="col"> */ }
+                                {/* Heading */ }
+                                {/* <div className="mb-5 font-weight-bold">Shop</div> */ }
+                                {/* Links */ }
+                                {/* <ul className="list-styled mb-7 font-size-sm">
                                                         <li className="list-styled-item">
                                                             <a className="list-styled-link" href="./shop.html">Default</a>
                                                         </li>
@@ -355,11 +361,11 @@ export default function Header() {
                                                         <li className="list-styled-item">
                                                             <a className="list-styled-link" href="./shop-masonry.html">Masonry</a>
                                                         </li>
-                                                    </ul>
-                                                    {/* Heading */ }
-                                                    <div className="mb-5 font-weight-bold">Product</div>
-                                                    {/* Links */ }
-                                                    <ul className="list-styled font-size-sm">
+                                                    </ul> */}
+                                {/* Heading */ }
+                                {/* <div className="mb-5 font-weight-bold">Product</div> */ }
+                                {/* Links */ }
+                                {/* <ul className="list-styled font-size-sm">
                                                         <li className="list-styled-item">
                                                             <a className="list-styled-link" href="./product.html">Default</a>
                                                         </li>
@@ -375,13 +381,13 @@ export default function Header() {
                                                         <li className="list-styled-item">
                                                             <a className="list-styled-link" href="./product-images-stacked.html">Images Stacked</a>
                                                         </li>
-                                                    </ul>
-                                                </div>
-                                                <div className="col">
-                                                    {/* Heading */ }
-                                                    <div className="mb-5 font-weight-bold">Support</div>
-                                                    {/* Links */ }
-                                                    <ul className="list-styled mb-7 font-size-sm">
+                                                    </ul> */}
+                                {/* </div> */ }
+                                {/* <div className="col"> */ }
+                                {/* Heading */ }
+                                {/* <div className="mb-5 font-weight-bold">Support</div> */ }
+                                {/* Links */ }
+                                {/* <ul className="list-styled mb-7 font-size-sm">
                                                         <li className="list-styled-item">
                                                             <a className="list-styled-link" href="./shopping-cart.html">Shopping Cart</a>
                                                         </li>
@@ -394,11 +400,11 @@ export default function Header() {
                                                         <li className="list-styled-item">
                                                             <a className="list-styled-link" href="./shipping-and-returns.html">Shipping &amp; Returns</a>
                                                         </li>
-                                                    </ul>
-                                                    {/* Heading */ }
-                                                    <div className="mb-5 font-weight-bold">Account</div>
-                                                    {/* Links */ }
-                                                    <ul className="list-styled font-size-sm">
+                                                    </ul> */}
+                                {/* Heading */ }
+                                {/* <div className="mb-5 font-weight-bold">Account</div> */ }
+                                {/* Links */ }
+                                {/* <ul className="list-styled font-size-sm">
                                                         <li className="list-styled-item">
                                                             <a className="list-styled-link" href="./account-order.html">Order</a>
                                                         </li>
@@ -417,11 +423,11 @@ export default function Header() {
                                                         <li className="list-styled-item">
                                                             <a className="list-styled-link" href="./account-address-edit.html">Addresses: New</a>
                                                         </li>
-                                                    </ul>
-                                                </div>
-                                                <div className="col">
-                                                    {/* Links */ }
-                                                    <ul className="list-styled mb-7 font-size-sm">
+                                                    </ul> */}
+                                {/* </div> */ }
+                                {/* <div className="col"> */ }
+                                {/* Links */ }
+                                {/* <ul className="list-styled mb-7 font-size-sm">
                                                         <li className="list-styled-item">
                                                             <a className="list-styled-link" href="./account-payment.html">Payment</a>
                                                         </li>
@@ -434,11 +440,11 @@ export default function Header() {
                                                         <li className="list-styled-item">
                                                             <a className="list-styled-link" href="./auth.html">Auth</a>
                                                         </li>
-                                                    </ul>
-                                                    {/* Heading */ }
-                                                    <div className="mb-5 font-weight-bold">Modals</div>
-                                                    {/* Links */ }
-                                                    <ul className="list-styled font-size-sm">
+                                                    </ul> */}
+                                {/* Heading */ }
+                                {/* <div className="mb-5 font-weight-bold">Modals</div> */ }
+                                {/* Links */ }
+                                {/* <ul className="list-styled font-size-sm">
                                                         <li className="list-styled-item">
                                                             <a className="list-styled-link" data-toggle="modal" href="#modalNewsletterHorizontal">
                                                                 Newsletter: Horizontal
@@ -474,18 +480,18 @@ export default function Header() {
                                                                 Wait List
                                                             </a>
                                                         </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                                    </ul> */}
+                                {/* </div> */ }
+                                {/* </div> */ }
+                                {/* </div> */ }
+                                {/* </div> */ }
+                                {/* </div> */ }
                             </li>
-                            <li className="nav-item dropdown">
-                                {/* Toggle */ }
-                                <a className="nav-link" data-toggle="dropdown" href="#">Pages</a>
-                                {/* Menu */ }
-                                <div className="dropdown-menu">
+                            {/* <li className="nav-item dropdown"> */ }
+                            {/* Toggle */ }
+                            {/* <a className="nav-link" data-toggle="dropdown" href="#">Pages</a> */ }
+                            {/* Menu */ }
+                            {/* <div className="dropdown-menu">
                                     <div className="card card-lg">
                                         <div className="card-body">
                                             <ul className="list-styled font-size-sm">
@@ -510,8 +516,8 @@ export default function Header() {
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
+                                </div> */}
+                            {/* </li> */ }
                             <li className="nav-item dropdown">
                                 {/* Toggle */ }
                                 <a className="nav-link" data-toggle="dropdown" href="#">Blog</a>
@@ -531,16 +537,16 @@ export default function Header() {
                                     </div>
                                 </div>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <a className="nav-link" href="docs/getting-started.html">Docs</a>
-                            </li>
+                            </li> */}
                         </ul>
                         {/* Nav */ }
                         <ul className="navbar-nav flex-row">
                             <li className="nav-item">
-                                <a className="nav-link" data-toggle="modal" href="#modalSearch">
+                                <Link className="nav-link" data-toggle="modal" onClick={ onOpenModal } to="">
                                     <i className="fe fe-search" />
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item ml-lg-n4">
                                 <Link className="nav-link" to={ ACCOUNT_ORDERS_PATH }>

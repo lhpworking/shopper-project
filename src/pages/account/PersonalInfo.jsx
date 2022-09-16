@@ -1,156 +1,135 @@
-import NavAccount from "../../components/NavAccount";
+import { DatePicker, message } from "antd";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Input from "../../components/Input";
+import { userService } from "../../services/userService";
+import { getUserInfo } from "../../stores/userReducer";
+import validate, { minMax, required } from "../../utils/validate";
 
 export default function PersonalInfo() {
+    const { user } = useSelector(store => store.user)
+    const [form] = useState(user)
+    const [error, setError] = useState({})
+    const dispatch = useDispatch()
+    const updateUser = (e) => {
+        e.preventDefault()
+        const rule = {
+            name: [
+                required()
+            ]
+        }
+        if (form.oldPassword) {
+            rule.oldPassword = [
+                required(),
+                minMax(6, 32)
+            ]
+            rule.newPassword = [
+                required(),
+                minMax(6, 32),
+                () => {
+                    form.oldPassword === form.newPassword ? "Your new password is the same old password" : undefined
+                }
+            ]
+        }
+        const error = validate(form, rule)
+        setError(error)
+
+        if (Object.keys(error).length === 0) {
+            const res = userService.updateUser(form);
+            console.log(res);
+            if (res.updateCount) {
+                console.log(res.updateCount);
+                message.success("Update successfully")
+                dispatch(getUserInfo())
+            }
+        } 
+    }
     return (
         <div>
-            {/* BREADCRUMB */ }
-            <nav className="py-5">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12">
-                            {/* Breadcrumb */ }
-                            <ol className="breadcrumb mb-0 font-size-xs text-gray-400">
-                                <li className="breadcrumb-item">
-                                    <a className="text-gray-400" href="index.html">Home</a>
-                                </li>
-                                <li className="breadcrumb-item active">
-                                    My Account
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </nav>
             {/* CONTENT */ }
-            <section className="pt-7 pb-12">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 text-center">
-                            {/* Heading */ }
-                            <h3 className="mb-10">My Account</h3>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-12 col-md-3">
-                            {/* Nav */ }
-                            <NavAccount />
-                        </div>
-                        <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
-                            {/* Form */ }
-                            <form>
-                                <div className="row">
-                                    <div className="col-12 col-md-6">
-                                        {/* Email */ }
-                                        <div className="form-group">
-                                            <label htmlFor="accountFirstName">
-                                                First Name *
-                                            </label>
-                                            <input className="form-control form-control-sm" id="accountFirstName" type="text" placeholder="First Name *" defaultValue="Daniel" required />
-                                        </div>
-                                    </div>
-                                    <div className="col-12 col-md-6">
-                                        {/* Email */ }
-                                        <div className="form-group">
-                                            <label htmlFor="accountLastName">
-                                                Last Name *
-                                            </label>
-                                            <input className="form-control form-control-sm" id="accountLastName" type="text" placeholder="Last Name *" defaultValue="Robinson" required />
-                                        </div>
-                                    </div>
-                                    <div className="col-12">
-                                        {/* Email */ }
-                                        <div className="form-group">
-                                            <label htmlFor="accountEmail">
-                                                Email Address *
-                                            </label>
-                                            <input className="form-control form-control-sm" id="accountEmail" type="email" placeholder="Email Address *" defaultValue="user@email.com" required />
-                                        </div>
-                                    </div>
-                                    <div className="col-12 col-md-6">
-                                        {/* Password */ }
-                                        <div className="form-group">
-                                            <label htmlFor="accountPassword">
-                                                Current Password *
-                                            </label>
-                                            <input className="form-control form-control-sm" id="accountPassword" type="password" placeholder="Current Password *" required />
-                                        </div>
-                                    </div>
-                                    <div className="col-12 col-md-6">
-                                        {/* Password */ }
-                                        <div className="form-group">
-                                            <label htmlFor="AccountNewPassword">
-                                                New Password *
-                                            </label>
-                                            <input className="form-control form-control-sm" id="AccountNewPassword" type="password" placeholder="New Password *" required />
-                                        </div>
-                                    </div>
-                                    <div className="col-12 col-lg-6">
-                                        {/* Birthday */ }
-                                        <div className="form-group">
-                                            {/* Label */ }
-                                            <label>Date of Birth</label>
-                                            {/* Inputs */ }
-                                            <div className="form-row">
-                                                <div className="col-auto">
-                                                    {/* Date */ }
-                                                    <label className="sr-only" htmlFor="accountDate">
-                                                        Date
-                                                    </label>
-                                                    <select className="custom-select custom-select-sm" id="accountDate">
-                                                        <option>10</option>
-                                                        <option>11</option>
-                                                        <option selected>12</option>
-                                                    </select>
-                                                </div>
-                                                <div className="col">
-                                                    {/* Date */ }
-                                                    <label className="sr-only" htmlFor="accountMonth">
-                                                        Month
-                                                    </label>
-                                                    <select className="custom-select custom-select-sm" id="accountMonth">
-                                                        <option>January</option>
-                                                        <option selected>February</option>
-                                                        <option>March</option>
-                                                    </select>
-                                                </div>
-                                                <div className="col-auto">
-                                                    {/* Date */ }
-                                                    <label className="sr-only" htmlFor="accountYear">
-                                                        Year
-                                                    </label>
-                                                    <select className="custom-select custom-select-sm" id="accountYear">
-                                                        <option>1990</option>
-                                                        <option selected>1991</option>
-                                                        <option>1992</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-12 col-lg-6">
-                                        {/* Gender */ }
-                                        <div className="form-group mb-8">
-                                            <label>Gender</label>
-                                            <div className="btn-group-toggle" data-toggle="buttons">
-                                                <label className="btn btn-sm btn-outline-border active">
-                                                    <input type="radio" name="gender" defaultChecked /> Male
-                                                </label>
-                                                <label className="btn btn-sm btn-outline-border">
-                                                    <input type="radio" name="gender" /> Female
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-12">
-                                        {/* Button */ }
-                                        <button className="btn btn-dark" type="submit">Save Changes</button>
+            <div className="row">
+                <div className="col-lg-12 col-md-9 col-lg-8 ">
+                    {/* Form */ }
+                    <form onSubmit={ updateUser }>
+                        <div className="row">
+                            <div className="col-12">
+                                {/* Email */ }
+                                <Input
+                                    className=""
+                                    label="Full name "
+                                    placeholder="Full name *"
+                                    error={ error.name }
+                                    onChange={ ev => form.name = ev.target.value }
+                                    defaultValue={ form.name }
+                                />
+                            </div>
+                            <div className="col-12">
+                                {/* Email */ }
+                                <Input
+                                    className=""
+                                    label="Email "
+                                    placeholder="Email *"
+                                    error={ error.email }
+                                    onChange={ ev => form.email = ev.target.value }
+                                    defaultValue={ form.email }
+                                />
+                            </div>
+                            <div className="col-12 col-md-6">
+                                {/* Password */ }
+                                <Input
+                                    type="password"
+                                    className=""
+                                    label="Current Password "
+                                    placeholder="Current Password *"
+                                    error={ error.oldPassword }
+                                    onChange={ ev => form.oldPassword = ev.target.value }
+                                    defaultValue={ form.oldPassword }
+                                />
+                            </div>
+                            <div className="col-12 col-md-6">
+                                {/* Password */ }
+                                <Input
+                                    type="password"
+                                    className=""
+                                    label="New Password "
+                                    placeholder="New Password *"
+                                    error={ error.newPassword }
+                                    onChange={ ev => form.newPassword = ev.target.value }
+                                    defaultValue={ form.newPassword }
+                                />
+                            </div>
+                            <div className="col-12 col-lg-6">
+                                {/* Birthday */ }
+                                <div className="form-group ">
+                                    {/* Label */ }
+                                    <label>Date of Birth</label>
+                                    {/* Inputs */ }
+                                    <DatePicker className="form-control" size="large" />
+                                </div>
+                            </div>
+                            <div className="col-12 col-lg-6">
+                                {/* Gender */ }
+                                <div className="form-group mb-8">
+                                    <label>Gender</label>
+                                    <div className="btn-group-toggle" data-toggle="buttons">
+                                        <label className={ `btn btn-sm btn-outline-border ${user.gender === 'male' ? 'active' : ''}` }>
+                                            <input type="radio" name="gender" checked={ user.gender === 'male' ? 1 : 0 } /> Male
+                                        </label>
+                                        <label className={ `btn btn-sm btn-outline-border ${user.gender === 'female' ? 'active' : ''}` } >
+                                            <input type="radio" name="gender" checked={ user.gender === 'female' ? 1 : 0 } /> Female
+                                        </label>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+                            <div className="col-12">
+                                {/* Button */ }
+                                <button className="btn btn-dark" type="submit">Save Changes</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </section>
+            </div>
         </div>
+
     )
 }
