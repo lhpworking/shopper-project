@@ -1,42 +1,41 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SHOP_PATH } from "../constants/path";
 
 export default function Countdown() {
-    const $ = document.querySelector.bind(document);
+    // const $ = document.querySelector.bind(document);
 
 
-    useEffect(() => {
-        const dataDate = $("[data-date]").getAttribute("data-date")
-        const countDownDate = new Date(dataDate).getTime()
+    // useEffect(() => {
+    //     const dataDate = $("[data-date]").getAttribute("data-date")
+    //     const countDownDate = new Date(dataDate).getTime()
 
-        const updateCountDown = setInterval(() => {
+    //     const updateCountDown = setInterval(() => {
 
-            // Get today's date and time
-            let now = new Date().getTime();
+    //         // Get today's date and time
+    //         let now = new Date().getTime();
 
-            // Find the distance between now and the count down date
-            let distance = countDownDate - now;
+    //         // Find the distance between now and the count down date
+    //         let distance = countDownDate - now;
 
-            // Time calculations for days, hours, minutes and seconds
-            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    //         // Time calculations for days, hours, minutes and seconds
+    //         let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    //         let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    //         let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    //         let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Output the result in an element with id="demo"
-            $("[data-days]").innerHTML = days
-            $("[data-hours]").innerHTML = hours
-            $("[data-minutes]").innerHTML = minutes
-            $("[data-seconds]").innerHTML = seconds
+    //         // Output the result in an element with id="demo"
+    //         $("[data-days]").innerHTML = days
+    //         $("[data-hours]").innerHTML = hours
+    //         $("[data-minutes]").innerHTML = minutes
+    //         $("[data-seconds]").innerHTML = seconds
 
-            // If the count down is over, write some text 
-            if (distance < 0) {
-                clearInterval(updateCountDown);
-                $(".counter").innerHTML = "End "
-            }
-        }, 1000)
-    }, [])
+    //         // If the count down is over, write some text 
+    //         if (distance < 0) {
+    //             clearInterval(updateCountDown);
+    //             $(".counter").innerHTML = "End "
+    //         }
+    //     }, 1000)
+    // }, [])
 
     return (
         < section className="py-13 bg-cover" style={ { backgroundImage: 'url(/img/covers/cover-4.jpg)' }
