@@ -26,9 +26,9 @@ export default function ProductCard({ real_price, price, name, brand_name, image
                 <div className="card-img">
                     {/* Image */ }
                     <Link className="card-img-hover" to={ productDetailPath }>
-                        <img className="card-img-top card-img-back" src={ images?.[1]?.thumbnail_url || images?.[0]?.thumbnail_url === "https://salt.tikicdn.com/assets/img/image.svg" ? "https://source.unsplash.com/random/?iphone" : images?.[1]?.thumbnail_url } alt="..." />
+                        <img className="card-img-top card-img-back" src={ images?.[1]?.thumbnail_url || images?.[0]?.thumbnail_url } alt={ name } />
                         <img className="card-img-top card-img-front" src={
-                            images?.[0]?.thumbnail_url === "https://salt.tikicdn.com/assets/img/image.svg" ? "https://source.unsplash.com/random/?samsung" : images?.[0]?.thumbnail_url } alt="" />
+                            images?.[0]?.thumbnail_url } alt={ name } />
                     </Link>
                     {/* Actions */ }
                     <div className="card-actions">
