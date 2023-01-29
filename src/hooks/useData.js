@@ -11,6 +11,7 @@ export const useData = (promise, deps) => {
         setLoading(true)
         promise()
             .then((res) => {
+                if (res) setData(res)
                 if (res.data) setData(res.data)
                 if (res.paginate) setPaginate(res.paginate)
                 setLoading(false)

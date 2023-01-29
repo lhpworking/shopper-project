@@ -23,6 +23,8 @@ export default function Shop() {
     const { data: products, paginate, loading } = useData(() =>
         productServices.getProducts(`?page=${currentPage}${category ? `&categories=${category}` : ''}`), [currentPage, category])
     const { categories, loadingCategory } = useSelector(store => store.product)
+    console.log(categories?.data);
+
     return (
         <div>
             {/* CONTENT */ }
@@ -115,7 +117,7 @@ export default function Shop() {
 
                                     }
                                     {
-                                        categories && categories.map((el, i) => {
+                                        categories?.data && categories?.data.map((el, i) => {
                                             if (el.id.toString() === category) {
                                                 return <h3 className="mb-1" key={ el.id }> { el.title }</h3>
                                             }
@@ -127,7 +129,7 @@ export default function Shop() {
                                             <Link className="text-gray-400" to={ HOME_PATH }>Home</Link>
                                         </li>
                                         {
-                                            categories && categories.map((el, i) => {
+                                            categories?.data && categories?.data.map((el, i) => {
                                                 if (el.id.toString() === category) {
                                                     return <li className="breadcrumb-item active" key={ el.id }>
                                                         { el.title }

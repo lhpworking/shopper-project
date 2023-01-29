@@ -64,7 +64,7 @@ export default function CategoryShop() {
                                         </Link>
                                     </li>
                                     {
-                                        categories.map(category => (
+                                        categories?.data.map(category => (
                                             <li key={ category?.id } className="list-styled-item active">
                                                 <Link className="list-styled-link" to={ '/shop/category/' + category?.slug }>
                                                     { category?.title }
