@@ -42,7 +42,7 @@ export default function PersonalInfo() {
                 message.success("Update successfully")
                 dispatch(getUserInfo())
             }
-        } 
+        }
     }
     return (
         <div>
@@ -69,9 +69,9 @@ export default function PersonalInfo() {
                                     className=""
                                     label="Email "
                                     placeholder="Email *"
-                                    error={ error.email }
-                                    onChange={ ev => form.email = ev.target.value }
-                                    defaultValue={ form.email }
+                                    error={ error.username }
+                                    onChange={ ev => form.username = ev.target.value }
+                                    defaultValue={ form.username }
                                 />
                             </div>
                             <div className="col-12 col-md-6">

@@ -1,15 +1,15 @@
 import api from "../constants/api";
 
 const accountServices = {
-    getWishLists(query = '') {
-        console.log("query", query);
-        return api.get(`/ecommerce/v1/profile/wishlist${query}`)
+    getWishLists() {
+        // console.log("query", query);
+        return api.get(`/product/wishlist`)
     },
     addWishList(id) {
-        return api.post(`/ecommerce/v1/profile/wishlist/${id}`)
+        return api.post(`/product/wishlist/${id}`)
     },
     removeWishList(id) {
-        return api.delete(`/ecommerce/v1/profile/wishlist/${id}`)
+        return api.delete(`/product/wishlist/${id}`)
     }
 }
 

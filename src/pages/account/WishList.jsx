@@ -8,7 +8,8 @@ import accountServices from "../../services/accountService";
 export default function Wishlist() {
     let currentPage = usePage()
 
-    const { data: products, loading, paginate } = useData(() => accountServices.getWishLists(`?page=${currentPage}`), [currentPage])
+    const { data: products, loading, paginate } = useData(() => accountServices.getWishLists(), [currentPage])
+    console.log("products wishlist", products);
 
     return (
         <div>
@@ -30,7 +31,7 @@ export default function Wishlist() {
                                     <Skeleton animation="wave" height={ 20 } />
                                 </div>
                             ) : products && products.map((product) => {
-                                return <WishListCard key={ product._id } product={ product.product } />
+                                return <WishListCard key={ product._id } product={ product } />
                             })
                         }
                     </div>

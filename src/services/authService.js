@@ -2,7 +2,7 @@ import { api } from "../constants/api"
 
 const authService = {
     login(data) {
-        return api.post('/authentication/v2/users', data)
+        return api.post('/authentication/v2/login', data)
     },
     register(data) {
         return api.post('/users/register', data)

@@ -26,7 +26,7 @@ export const ACCOUNT_ORDERS_Detail_PATH = '/account/orders/:id'
 export const ACCOUNT_PAYMENT_PATH = '/account/payment'
 export const ACCOUNT_PAYMENT_EDIT_PATH = '/account/payment/edit'
 export const ACCOUNT_PERSONAL_INFO_PATH = '/account/personal-info'
-export const ACCOUNT_WISHLIST_PATH = '/account/wishlist'
+export const ACCOUNT_WISHLIST_PATH = '/product/wishlist'
 
 // Blog 
 export const BLOG_PATH = '/blog'

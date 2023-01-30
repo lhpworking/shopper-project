@@ -10,6 +10,7 @@ export default function BestPicks() {
     useEffect(() => {
         dispatch(fetchCategory())
     }, [])
+
     return (
         <section section className="pt-12" >
             <div className="container">
@@ -39,9 +40,9 @@ export default function BestPicks() {
                                 {/* Body */ }
                                 <div className="card-body my-auto text-center">
                                     {/* Heading */ }
-                                    <h4 className="mb-0">{ categories[0]?.title }</h4>
+                                    <h4 className="mb-0">{ categories?.data?.[0]?.title }</h4>
                                     {/* Link */ }
-                                    <Link className="btn btn-link stretched-link text-reset" to={ '/shop/category/' + categories[0]?.slug }>
+                                    <Link className="btn btn-link stretched-link text-reset" to={ '/shop/category/' + categories?.data?.[0]?.slug }>
                                         Shop Now <i className="fe fe-arrow-right ml-2" />
                                     </Link>
                                 </div>
@@ -61,9 +62,9 @@ export default function BestPicks() {
                                             <span className="font-size-h4 font-weight-bold">30%</span>
                                         </div>
                                         {/* Heading */ }
-                                        <h4 className="mb-0">{ categories[1]?.title }</h4>
+                                        <h4 className="mb-0">{ categories?.data?.[1]?.title }</h4>
                                         {/* Link */ }
-                                        <Link className="btn btn-link stretched-link px-0 text-reset" to={ '/shop/category/' + categories[1]?.slug }>
+                                        <Link className="btn btn-link stretched-link px-0 text-reset" to={ '/shop/category/' + categories?.data?.[1]?.slug }>
                                             Shop Now <i className="fe fe-arrow-right ml-2" />
                                         </Link>
                                     </div>
@@ -78,9 +79,9 @@ export default function BestPicks() {
                                     {/* Body */ }
                                     <div className="card-body my-auto px-md-10 text-center text-md-left">
                                         {/* Heading */ }
-                                        <h4 className="mb-0">{ categories[2]?.title }</h4>
+                                        <h4 className="mb-0">{ categories?.data?.[2]?.title }</h4>
                                         {/* Link */ }
-                                        <Link className="btn btn-link stretched-link px-0 text-reset" to={ '/shop/category/' + categories[2]?.slug }>
+                                        <Link className="btn btn-link stretched-link px-0 text-reset" to={ '/shop/category/' + categories?.data?.[2]?.slug }>
                                             Shop Now <i className="fe fe-arrow-right ml-2" />
                                         </Link>
                                     </div>
@@ -95,9 +96,9 @@ export default function BestPicks() {
                                     {/* Body */ }
                                     <div className="card-body my-auto text-center">
                                         {/* Heading */ }
-                                        <h4 className="mb-0">{ categories[3]?.title }</h4>
+                                        <h4 className="mb-0">{ categories?.data?.[3]?.title }</h4>
                                         {/* Link */ }
-                                        <Link className="btn btn-link stretched-link text-reset" to={ '/shop/category/' + categories[3]?.slug }>
+                                        <Link className="btn btn-link stretched-link text-reset" to={ '/shop/category/' + categories?.data?.[3]?.slug }>
                                             Shop Now <i className="fe fe-arrow-right ml-2" />
                                         </Link>
                                     </div>

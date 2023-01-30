@@ -79,8 +79,9 @@ export const { reducer: authReducer, name, actions: authActions } = createSlice(
 export const fetchRegister = createAsyncThunk(`${name}/fetchRegister`, async (payload, thunkApi) => {
     try {
         const register = await authService.register(payload.data)
-        if (register.error) {
-            payload?.error(register)
+        console.log("register", register);
+        if (register) {
+            payload?.error(register.message)
         } else {
             payload?.success(payload.data)
             thunkApi.dispatch(fetchLogin({

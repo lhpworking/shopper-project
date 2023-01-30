@@ -33,7 +33,7 @@ export default function Countdown() {
             // If the count down is over, write some text 
             if (distance < 0) {
                 clearInterval(updateCountDown);
-                $(".counter").innerHTML = "End "
+                $(".counter").innerHTML = "End"
             }
         }, 1000)
     }, [])
@@ -49,7 +49,7 @@ export default function Countdown() {
                             Get -50% from <br />Summer Collection
                         </h3>
                         {/* Counter */ }
-                        <div className="d-flex mb-9 counter" id="1" data-countdown data-date="Jan 5, 2023 15:37:25">
+                        <div className="d-flex mb-9 counter" id="1" data-countdown data-date="Jan 5, 2024 15:37:25">
                             <div className="text-center">
                                 <div className="font-size-h1 font-weight-bolder text-primary days" data-days>00</div>
                                 <div className="heading-xxs text-muted">Days</div>

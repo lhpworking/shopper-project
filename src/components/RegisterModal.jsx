@@ -56,7 +56,7 @@ export default function RegisterModal() {
                     // }))
                 },
                 error: (err) => {
-                    setMessageErrRes(err.error)
+                    setMessageErrRes(err)
                 }
             }))
         }
