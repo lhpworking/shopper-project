@@ -11,7 +11,7 @@ export const PRODUCT_PATH = '/product'
 export const LOGOUT_PATH = '/'
 // shop
 export const SHOP_PATH = '/shop'
-export const PRODUCT_DETAIL_PATH = '/shop/:slug'
+export const PRODUCT_DETAIL_PATH = '/shop/:id'
 export const PRODUCT_CATEGORY_PATH = '/shop/category/:slug-id:category'
 export const SHOPPING_CART_PATH = '/shopping-cart'
 export const SHOPPING_AND_RETURNS_PATH = '/shopping-and-returns'

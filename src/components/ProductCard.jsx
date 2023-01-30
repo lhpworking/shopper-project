@@ -6,9 +6,9 @@ import accountServices from "../services/accountService";
 import { currency } from "../utils/currency";
 
 
-export default function ProductCard({ real_price, price, name, brand_name, images, slug, thumbnail_url, _id }) {
+export default function ProductCard({ id, real_price, price, name, brand_name, images, slug, thumbnail_url, _id }) {
     const productDetailPath = useMemo(() =>
-        generatePath(PRODUCT_DETAIL_PATH, { slug }), [slug])
+        generatePath(PRODUCT_DETAIL_PATH, { id }), [id])
     const addWishList = async () => {
         await accountServices.addWishList(_id)
         message.success('Product has been added to your WishList', 1);

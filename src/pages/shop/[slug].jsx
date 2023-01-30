@@ -6,8 +6,9 @@ import { productServices } from '../../services/productServices';
 import { currency } from '../../utils/currency';
 
 export default function ProductDetail() {
-    const { slug } = useParams()
-    const { data, loading } = useData(() => productServices.getProductDetail(slug), [slug])
+    const { id } = useParams()
+    console.log(id);
+    const { data, loading } = useData(() => productServices.getProductDetail(id), [id])
     console.log("data 1", data);
     const { data: products } = useData(() => productServices.getProducts(), [])
     useEffect(() => {
@@ -15,7 +16,7 @@ export default function ProductDetail() {
             top: 0,
             behavior: "smooth"
         })
-    }, [slug])
+    }, [id])
     return (
         data && <div >
             {/* BREADCRUMB */ }
